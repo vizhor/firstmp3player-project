@@ -4,8 +4,13 @@ import Interface.PlayerInterface;
 import jaco.mp3.player.MP3Player;
 
 public class PlayerMethods implements PlayerInterface {
-
+    //private String song; 
+	//public PlayerMethods(String aSong){
+	//	song=aSong;
+	//}
+	
 	private MP3Player mymp3player = new MP3Player();
+	//private MP3Player mymp3player;
 
 	public MP3Player getMymp3player() {
 		return mymp3player;
@@ -18,6 +23,7 @@ public class PlayerMethods implements PlayerInterface {
 	public void Vopen() {
 		mymp3player.stop();
 		mymp3player.play();
+		
 
 	}
 
