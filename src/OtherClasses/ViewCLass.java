@@ -21,11 +21,9 @@ import javax.swing.ImageIcon;
 public class ViewClass implements ActionListener{
 	private JFrame frmPlayer;
 	private PlayerMethods playermethods = new PlayerMethods();
-	private MP3Player mp3player;
+	private MP3Player mp3player;//=null
 	
-	final JFileChooser fileChooser = new JFileChooser();
-	//private Calculator calculator = new Calculator();
-	//private JLabel lblResult = new JLabel("Result:");
+	
 	
 	private JLabel lblMusic = new JLabel("Music: ");
 	private JLabel lblSong = new JLabel("MySong");
@@ -33,7 +31,7 @@ public class ViewClass implements ActionListener{
 	private JButton btnPlay = new JButton("");
 	private JButton btnPause = new JButton("");
 	private JButton btnStop = new JButton("");
-
+	
 	private String choosenSong;
 	/**
 	 * Create the application.
@@ -55,19 +53,7 @@ public class ViewClass implements ActionListener{
 		frmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPlayer.getContentPane().setLayout(null);
 		
-		//txfFirstNumber = new JTextField();
-		//txfFirstNumber.setBounds(116, 27, 108, 20);
-		//frmCalculator.getContentPane().add(txfFirstNumber);
-		//txfFirstNumber.setColumns(10);
 		
-		/*txfSecondNumber = new JTextField();
-		txfSecondNumber.setBounds(116, 58, 108, 20);
-		frmCalculator.getContentPane().add(txfSecondNumber);
-		txfSecondNumber.setColumns(10);	
-		
-		lblFirstNumber.setBounds(10, 30, 96, 14);
-		lblSecondNumber.setBounds(10, 61, 96, 14);
-		lblResult.setBounds(10, 86, 223, 14);*/
 		btnOpen.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\openp.jpg"));
 		btnPlay.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\playp.jpg"));
 		btnPause.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\pausep.jpg"));
@@ -98,6 +84,10 @@ public class ViewClass implements ActionListener{
 		frmPlayer.getContentPane().add(btnPause);
 		frmPlayer.getContentPane().add(btnStop);
 		
+		/*btnPlay.setEnabled(false);
+		btnStop.setEnabled(false);
+		btnPause.setEnabled(false);*/
+		
 	}
 		
 	
@@ -115,47 +105,37 @@ public class ViewClass implements ActionListener{
 	 * 
 	 * @return firstNUmber - Number that is written in the textfield
 	 **/
-	/*public double getValueFromTextField1(){		
-		double firstNumber = 0.0;						
-		firstNumber = Double.valueOf(txfFirstNumber.getText());		
-		return firstNumber;		
-	}
-	
-	public double getValueFromTextField2(){		
-		double secondNumber = 0.0;						
-		secondNumber = Double.valueOf(txfSecondNumber.getText());		
-		return secondNumber;		
-	}	*/
-	
+
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnOpen){
+			JFileChooser fileChooser = new JFileChooser();
 			int returnVal = fileChooser.showOpenDialog(frmPlayer);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				System.out.println(file.getAbsolutePath());
 				choosenSong=file.getAbsolutePath();
-				lblSong.setText(file.getName());
+				lblSong.setText(file.getName().toString());
 				mp3player=playermethods.getMymp3player();
 				
+				//if mp3player ! null then stop
+				
 				//playermethods.setMymp3player(mp3player);
-				playermethods.getMymp3player
-				playermethods.Vopen();
+				//playermethods.getMymp3player
+				//playermethods.Vopen();
 		}		
 		
 		if (e.getSource() == btnPlay){
-			playermethods.setMymp3player(mp3player);
+			//playermethods.setMymp3player(mp3player);
 			playermethods.Vplay();
 		}
 		
 		if (e.getSource() == btnPause){
-			playermethods.setMymp3player(mp3player);
 			playermethods.Vpause();
 		}
 		
 		if (e.getSource() == btnStop){
-			playermethods.setMymp3player(mp3player);
 			playermethods.Vstop();
 		}	
 		

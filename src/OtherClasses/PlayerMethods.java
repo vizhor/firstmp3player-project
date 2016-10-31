@@ -24,7 +24,9 @@ public class PlayerMethods implements PlayerInterface {
 		mymp3player.stop();
 		mymp3player.play();
 		
-
+//string songname
+		
+	//konstruktor i main
 	}
 
 	public void Vplay() {
