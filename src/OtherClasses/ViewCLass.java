@@ -1,12 +1,8 @@
 package OtherClasses;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
-import com.editor.otherclasses.JavaEditor;
-
-import jaco.mp3.player.MP3Player;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -21,7 +17,7 @@ import javax.swing.ImageIcon;
 public class ViewClass implements ActionListener{
 	private JFrame frmPlayer;
 	private PlayerMethods playermethods = new PlayerMethods();
-	private MP3Player mp3player;//=null
+	//private MP3Player mp3player;//=null
 	
 	
 	
@@ -54,10 +50,10 @@ public class ViewClass implements ActionListener{
 		frmPlayer.getContentPane().setLayout(null);
 		
 		
-		btnOpen.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\openp.jpg"));
-		btnPlay.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\playp.jpg"));
-		btnPause.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\pausep.jpg"));
-		btnStop.setIcon(new ImageIcon("C:\\Users\\viktor\\Desktop\\20sep\\firstmp3player-project\\Icons\\stopp.jpg"));
+		btnOpen.setIcon(new ImageIcon("Icons\\openp.jpg"));
+		btnPlay.setIcon(new ImageIcon("Icons\\playp.jpg"));
+		btnPause.setIcon(new ImageIcon("Icons\\pausep.jpg"));
+		btnStop.setIcon(new ImageIcon("Icons\\stopp.jpg"));
 
 		
 		lblMusic.setBounds(10, 80, 67, 23);
@@ -96,6 +92,7 @@ public class ViewClass implements ActionListener{
 		btnPlay.addActionListener(this);
 		btnPause.addActionListener(this);
 		btnStop.addActionListener(this);
+		//btnStop.addActionListener(frmPlayer.);
 	}
 
 	
@@ -109,7 +106,14 @@ public class ViewClass implements ActionListener{
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnOpen){
+		
+		if (e.getSource() == btnStop){
+			System.out.println("stop");
+			playermethods.Vstop();
+		}	
+		
+		else if (e.getSource() == btnOpen){
+			System.out.println("open");
 			JFileChooser fileChooser = new JFileChooser();
 			int returnVal = fileChooser.showOpenDialog(frmPlayer);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -117,30 +121,30 @@ public class ViewClass implements ActionListener{
 				System.out.println(file.getAbsolutePath());
 				choosenSong=file.getAbsolutePath();
 				lblSong.setText(file.getName().toString());
-				mp3player=playermethods.getMymp3player();
+				//mp3player=playermethods.getMymp3player();
 				
 				//if mp3player ! null then stop
 				
-				//playermethods.setMymp3player(mp3player);
+				playermethods.setSong(file.getAbsolutePath());
 				//playermethods.getMymp3player
 				//playermethods.Vopen();
-		}		
-		
-		if (e.getSource() == btnPlay){
+		    }		
+		}
+			else if (e.getSource() == btnPlay){
 			//playermethods.setMymp3player(mp3player);
+			System.out.println("play");
 			playermethods.Vplay();
 		}
 		
-		if (e.getSource() == btnPause){
+			else if (e.getSource() == btnPause){
+			System.out.println("pause");
 			playermethods.Vpause();
 		}
 		
-		if (e.getSource() == btnStop){
-			playermethods.Vstop();
-		}	
+
 		
 	}
 }
-}	
+	
 
 

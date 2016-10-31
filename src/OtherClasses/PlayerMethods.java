@@ -1,28 +1,35 @@
 package OtherClasses;
 
+import java.io.File;
+
 import Interface.PlayerInterface;
 import jaco.mp3.player.MP3Player;
 
 public class PlayerMethods implements PlayerInterface {
-    //private String song; 
+    private String song; 
+    private MP3Player mymp3player = new MP3Player();
 	//public PlayerMethods(String aSong){
 	//	song=aSong;
 	//}
+    public void setSong(String asong){
+    	 song=asong;
+    }
+    
 	
-	private MP3Player mymp3player = new MP3Player();
+	//private MP3Player mymp3player = new MP3Player();
 	//private MP3Player mymp3player;
 
-	public MP3Player getMymp3player() {
+	/*public MP3Player getMymp3player() {
 		return mymp3player;
 	}
 
 	public void setMymp3player(MP3Player mymp3player) {
 		this.mymp3player = mymp3player;
-	}
+	}*/
 
 	public void Vopen() {
 		mymp3player.stop();
-		mymp3player.play();
+		//mymp3player.play();
 		
 //string songname
 		
@@ -30,6 +37,8 @@ public class PlayerMethods implements PlayerInterface {
 	}
 
 	public void Vplay() {
+		System.out.println("song="+song);
+		mymp3player.addToPlayList(new File(song));
 		mymp3player.play();
 	}
 
